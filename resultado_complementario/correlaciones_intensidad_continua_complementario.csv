@@ -1,0 +1,8 @@
+predictor,outcome,label,n,rho,p_valor,significativo
+delta_t_max,intensidad_max,ΔT_max vs intensidad_max,43,0.03888146940356723,0.8044877296647532,False
+delta_t_max,intensidad_total,ΔT_max vs intensidad_total,43,-0.005157912769330483,0.9738131649986989,False
+delta_t_r3,n_puntos_dolor,ΔT_R3 vs n_puntos_dolor,43,-0.07650315572843536,0.6258347664247654,False
+delta_t_norm_max,intensidad_max,ΔT_norm_max vs intensidad_max,43,0.04023768261104604,0.7978081792039625,False
+delta_t_norm_max,intensidad_total,ΔT_norm_max vs intensidad_total,43,-0.0037852621415087394,0.9807806086395415,False
+delta_t_max,presencia_dolor,delta_t_max vs presencia_dolor (binaria),43,-0.013447202820848077,0.9317966317709948,False
+delta_t_norm_max,presencia_dolor,delta_t_norm_max vs presencia_dolor (binaria),43,-0.01342938486838075,0.931886791463484,False

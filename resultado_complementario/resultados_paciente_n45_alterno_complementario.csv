@@ -1,0 +1,5 @@
+analisis,n,valor_1,valor_2,significativo,valor_3,valor_4,valor_extra
+kruskal_wallis_delta_t_max_by_cat,43,0.18056136952920024,0.91367469470981,False,,,
+roc_delta_t_norm_max_n45,43,0.49208144796380093,0.8999999999999986,False,0.6153846153846154,0.5294117647058824,
+spearman_delta_t_max_vs_intensidad_total,43,-0.005157912769330483,0.9738131649986989,False,,,
+mann_whitney_delta_t_max_cd_vs_sd,43,217.5,0.9404548844677237,False,,,Med_CD=1.100_SD=0.800

@@ -1,0 +1,17 @@
+analisis,region,lado,n_masc,n_fem,mediana_masc,mediana_fem,u_stat,p_valor,significativo,n,rho
+mw_sexo_r1_derecha,r1,derecha,14.0,29.0,33.75,34.1,154.5,0.21219459004543706,False,,
+mw_sexo_r1_izquierda,r1,izquierda,14.0,29.0,33.95,34.3,146.0,0.1415968921703756,False,,
+mw_sexo_r2_derecha,r2,derecha,14.0,29.0,33.65,33.8,180.5,0.5678425202755435,False,,
+mw_sexo_r2_izquierda,r2,izquierda,14.0,29.0,33.8,33.7,198.0,0.9069459552837259,False,,
+mw_sexo_r3_derecha,r3,derecha,14.0,29.0,34.4,34.5,174.0,0.45870061836823517,False,,
+mw_sexo_r3_izquierda,r3,izquierda,14.0,29.0,34.4,34.5,163.0,0.3044465616794112,False,,
+mw_sexo_r4_derecha,r4,derecha,14.0,29.0,33.55,32.5,288.0,0.028333504124655316,True,,
+mw_sexo_r4_izquierda,r4,izquierda,14.0,29.0,33.349999999999994,32.4,315.5,0.003667274500439694,True,,
+spearman_edad_r1_derecha,r1,derecha,,,,,,0.42285598533980234,False,43.0,-0.12543635639670847
+spearman_edad_r1_izquierda,r1,izquierda,,,,,,0.37166143641464644,False,43.0,-0.13968343240950515
+spearman_edad_r2_derecha,r2,derecha,,,,,,0.15161926579980864,False,43.0,-0.22246230087247357
+spearman_edad_r2_izquierda,r2,izquierda,,,,,,0.05266775633738195,False,43.0,-0.29752379529184014
+spearman_edad_r3_derecha,r3,derecha,,,,,,0.19782490226599206,False,43.0,-0.20028854805517027
+spearman_edad_r3_izquierda,r3,izquierda,,,,,,0.08550322635774726,False,43.0,-0.2653333421989822
+spearman_edad_r4_derecha,r4,derecha,,,,,,0.05885269479037486,False,43.0,-0.29042781961578257
+spearman_edad_r4_izquierda,r4,izquierda,,,,,,0.04894202004466168,True,43.0,-0.3021285546195557
