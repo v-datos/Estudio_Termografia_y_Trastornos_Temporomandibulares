@@ -1,7 +1,7 @@
 # 🌡️ Estudio de Termografía Infrarroja y Trastornos Temporomandibulares (TTM)
 
 <p align="center">
-  <img src="./assets/pipeline_workflow_v1.svg" alt="Pipeline workflow" width="1200">
+  <img src="./assets/termo.png" alt="Pipeline workflow" width="1200">
 </p>
 
 ## 📖 Overview (Visión General)
