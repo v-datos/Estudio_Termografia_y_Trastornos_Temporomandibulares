@@ -1,9 +1,13 @@
 # 🌡️ Estudio de Termografía Infrarroja y Trastornos Temporomandibulares (TTM)
 
-## 📖 Overview (Visión General)
-Este proyecto consiste en un pipeline completo de análisis de datos y modelado estadístico diseñado para evaluar la relación clínica entre la **asimetría térmica facial** (medida mediante termografía infrarroja pre-palpación) y la presencia e intensidad de **dolor orofacial** reportado por pacientes durante el examen clínico de palpación muscular.
+<p align="center">
+  <img src="./assets/pipeline_workflow_v1.svg" alt="Pipeline workflow" width="1200">
+</p>
 
-El problema central que busca resolver es determinar empíricamente si la termografía puede utilizarse como un biomarcador objetivo o herramienta diagnóstica complementaria para los Trastornos Temporomandibulares (TTM), lidiando computacionalmente con un alto desbalance de clases (solo 4.7% de puntos reportan dolor) y controlando por variables confusoras biológicas (sexo, edad y asimetría térmica poblacional natural).
+## 📖 Overview (Visión General)
+Este proyecto consiste en un pipeline completo de análisis de datos y modelado estadístico diseñado para evaluar la relación clínica entre la **asimetría térmica facial** (medida mediante termografía infrarroja) y la presencia/intensidad de dolor reportado durante la palpación muscular.
+
+El problema central que busca resolver es determinar empíricamente si la termografía puede utilizarse como un biomarcador objetivo o herramienta diagnóstica complementaria para los Trastornos Temporomandibulares.
 
 ## 🏗️ Arquitectura y Workflow
 
@@ -16,9 +20,9 @@ El sistema procesa la información de forma secuencial a lo largo de 4 etapas pr
    - Mapeo espacial entre las regiones térmicas y los puntos anatómicos específicos de dolor clínico evaluados en los pacientes (escala 0-10).
    - Generación de un conjunto de datos pareado consolidado para cada paciente.
 3. **Modelado y Análisis Estadístico (`analisis_termografia.py`, `analisis_termografia_complementario.py`)**
-   - **Estadística Descriptiva e Inferencial:** Pruebas de Wilcoxon, Mann-Whitney U, y pruebas de correlación no paramétricas (Spearman) con remuestreo de permutaciones por bloques y corrección de Bonferroni.
+   - **Estadística Descriptiva e Inferencial:** Pruebas de Wilcoxon, Mann-Whitney U, y pruebas de correlación no paramétricas (Spearman) con remuestreo de permutaciones por bloques y corrección de múltiples hipótesis.
    - **Machine Learning (Evaluación Diagnóstica):** Análisis de capacidad discriminativa calculando curvas ROC (AUC), Precision-Recall y el Índice de Youden.
-   - **Regresión Multivariada:** Modelos de regresión logística robustos (compensando errores estándar por clúster) y ponderados para tratar el desbalance de clases, comparando predictores de área, puntuales y confusores (Modelos A, B, C, D, E).
+   - **Regresión Multivariada:** Modelos de regresión logística robustos (compensando errores estándar por clúster) y ponderados para tratar el desbalance de clases, comparando predictores de dolor facial y asimetría térmica.
 4. **Visualización y Reportes Automáticos (`generar_visualizaciones_*.py`, `generar_reporte_*.py`)**
    - Generación programática de figuras de publicación científica (alta resolución, gráficos Forest Plot, curvas ROC y Boxplots).
    - Compilación automatizada de los hallazgos en reportes ejecutivos en formato PDF estructurados bajo el estándar científico IMRaD (Introducción, Métodos, Resultados y Discusión).
@@ -55,19 +59,19 @@ Para ejecutar el pipeline en su orden de dependencia funcional:
 python herramientas/proceso_de_datos.py
 python herramientas/unificar_dolor_termografia.py
 ```
-*(Procesa los datos crudos del directorio `datos/` y genera el dataset analítico maestro `datos_finales_termografia_procesados_todas_fotos.csv`).*
+*(Procesa los datos crudos del directorio `datos/` y genera el dataset analítico maestro `datos_finales_termografia_procesados_todas_fotos.csv`.)*
 
 **2. Ejecución del Análisis Estadístico Principal:**
 ```bash
 python herramientas/analisis_termografia.py
 ```
-*(Evalúa el indicador de asimetría térmica crudo ΔT. Produce múltiples tablas de contingencia, correlación CSVs e imágenes temporales en la carpeta `resultados/`).*
+*(Evalúa el indicador de asimetría térmica crudo ΔT. Produce múltiples tablas de contingencia, correlación CSVs e imágenes temporales en la carpeta `resultados/`.)*
 
 **3. Ejecución del Análisis Complementario:**
 ```bash
 python herramientas/analisis_termografia_complementario.py
 ```
-*(Evalúa el ΔT normalizado ajustando variables como sexo y edad. Produce reportes paralelos en la carpeta `resultado_complementario/`).*
+*(Evalúa el ΔT normalizado ajustando variables como sexo y edad. Produce reportes paralelos en la carpeta `resultado_complementario/`.)*
 
 **4. Generación (o regeneración) de Gráficos:**
 ```bash
@@ -100,7 +104,8 @@ python herramientas/generar_reporte_interpretacion.py
 ├── resultado_complementario/              # Salidas del Análisis Complementario
 ├── informacion_general.md                 # Detalles metodológicos, reglas de imputación y control de calidad
 ├── objetivos_del_estudio_con_hipotesis_estadisticas.md # Definición formal de las hipótesis clínicas (H0/H1)
-└── README.md                              # Este documento
+├── README.md                              # Este documento
+└── assets/                                # Assets visuales del repositorio
 ```
 
 ## 📊 Outputs / Resultados Esperados
@@ -109,11 +114,11 @@ Al finalizar el pipeline, el sistema poblara automáticamente los directorios `r
 - **Métricas Diagnósticas (CSVs):** Documentos como `resultados_roc.csv` o `resultados_logit_cluster.csv` exponiendo métricas de OR (Odds Ratio), AUC y p-valores.
 - **Correlaciones de Variables (CSVs):** Detalle exhaustivo por test estadístico (Spearman, concordancia de Kappa) como `correlaciones_globales.csv`.
 - **Artefactos Visuales:** Imágenes `.png` listas para su publicación (300 DPI) que incluyen histogramas, forest plots de regresiones logísticas, barplots de AUC y scatter plots cruzados.
-- **Dossier Ejecutivo PDF:** Tres archivos consolidados de hasta ~16 páginas con formato IMRaD, tablas formateadas, advertencias metodológicas, visualizaciones embebidas e insight de conclusiones médicas.
+- **Dossier Ejecutivo PDF:** Tres archivos consolidados de hasta ~16 páginas con formato IMRaD, tablas formateadas, advertencias metodológicas, visualizaciones embebidas e insights de conclusión.
 
 ## ⚠️ Limitaciones Conocidas y Notas Metodológicas
 
-* **Desbalance Severo de Clases (Skewness):** Solo el ~4.7% de los 2,295 puntos evaluados en la muestra poblacional exhibieron dolor clínico comprobable. Si bien se utilizaron ponderaciones algorítmicas robustas (`class_weight='balanced'`), esto impone restricciones prácticas al rendimiento del modelo (limitando su AUC global máximo en un rango empírico < 0.70).
-* **Manejo de Valores Nulos (NaN):** **No se imputan datos térmicos.** Para evitar introducir temperaturas artificiales falsas, cualquier valor térmico faltante desencadena la exclusión automática (`.dropna()`) del registro para el análisis de dicho punto. Por su parte, los registros faltantes en la intensidad de dolor se imputaron conservadoramente como `0`.
-* **Clusters Estadísticos y Dependencia:** Las observaciones (múltiples puntos orofaciales) están agrupadas dentro del mismo paciente, lo cual viola el principio de independencia estadística directa. El código corrige esto empleando estimadores "sandwich" mediante el argumento `cov_type='cluster'` utilizando el ID del paciente como agrupador.
-* **Sesgo Basal Descubierto:** Se documentó un hallazgo lateral de asimetría térmica poblacional biológica esperada sistemática con predominancia al hemisferio derecho facial (+0.46°C a +0.75°C). Cualquier análisis de calor predictivo futuro del codebase debería tener esto en cuenta y usar desviaciones corregidas.
+* **Desbalance Severo de Clases (Skewness):** Solo el ~4.7% de los 2,295 puntos evaluados en la muestra poblacional exhibieron dolor clínico comprobable. Si bien se utilizaron ponderaciones algo ...
+* **Manejo de Valores Nulos (NaN):** **No se imputan datos térmicos.** Para evitar introducir temperaturas artificiales falsas, cualquier valor térmico faltante desencadena la exclusión automática de la observación del análisis correspondiente.
+* **Clusters Estadísticos y Dependencia:** Las observaciones (múltiples puntos orofaciales) están agrupadas dentro del mismo paciente, lo cual viola el principio de independencia estadística si se modela sin considerar la estructura de cluster.
+* **Sesgo Basal Descubierto:** Se documentó un hallazgo lateral de asimetría térmica poblacional biológica esperada sistemática con predominancia al hemisferio derecho facial (+0.46°C a +0.58°C).
